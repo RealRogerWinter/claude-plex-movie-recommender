@@ -1,0 +1,64 @@
+{
+  "_comment": "Copy to ~/.config/recommendations/config.json (or <skill>/config.json) and edit. Nothing here is secret; the Plex token is read at runtime and never stored.",
+
+  "library": {
+    "source": "plex",
+    "plex": {
+      "base_url": "http://localhost:32400",
+      "prefs_path": "/path/to/Plex Media Server/Preferences.xml",
+      "container": "plex"
+    },
+    "tautulli": {
+      "_comment": "Used only for per-user recommendations. 'users' is \"all\" or a list of names, e.g. [\"Alice\",\"Bob\"]. The API key is read at runtime from the container config and never stored.",
+      "base_url": "http://localhost:8181",
+      "container": "tautulli",
+      "config_path": "/config/config.ini",
+      "users": "all"
+    }
+  },
+
+  "personal_recommendations": false,
+
+  "workdir": "~/recommendations",
+
+  "site": {
+    "title": "My Recommendation Atlas",
+    "tagline": "Your library, extended."
+  },
+
+  "deploy": {
+    "provider": "github-pages",
+    "repo": "OWNER/REPO",
+    "domain": "recommendations.example.org",
+    "branch": "main",
+    "visibility": "private",
+    "git_name": "Your Name",
+    "git_email": "you@users.noreply.github.com"
+  },
+
+  "services": {
+    "seerr": {
+      "enabled": false,
+      "base_url": "http://localhost:5055",
+      "public_url": "https://requests.example.org",
+      "container": "seerr",
+      "settings_path": "/app/config/settings.json"
+    }
+  },
+
+  "research": {
+    "tmdb_api_key": ""
+  },
+
+  "bounds": {
+    "sampleForTaste": 80,
+    "classifyBatch": 20,
+    "maxClusters": 6,
+    "perCluster": 8
+  },
+
+  "modes": {
+    "daring": false,
+    "discovery": false
+  }
+}

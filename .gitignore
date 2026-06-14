@@ -1,0 +1,12 @@
+# Personal config & runtime data must never be committed to this generic repo.
+config.json
+/site/
+/state/
+/work/
+/posters/
+
+# Python / OS cruft
+__pycache__/
+*.pyc
+.DS_Store
+*.log

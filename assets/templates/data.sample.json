@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "generatedAt": "2026-06-14",
+    "libraryTitle": "My Recommendation Atlas",
+    "ownerBlurb": "A cinephile shelf with a spine of cerebral science fiction, quietly devastating drama, and long-form crime morality plays — Kubrick to Villeneuve, A24 heartbreak to The Wire.",
+    "counts": { "library": 6, "recommendations": 6, "clusters": 3 },
+    "run": {
+      "round": 2,
+      "previousRunAt": "2026-05-30",
+      "sinceLast": {
+        "added": [
+          { "id": "lib-manch", "title": "Manchester by the Sea", "year": "2016", "type": "movie", "wasRecommended": true },
+          { "id": "lib-drive", "title": "Drive My Car", "year": "2021", "type": "movie", "wasRecommended": false }
+        ],
+        "removed": [],
+        "acquiredFromRecs": ["rec-manchester"],
+        "headline": "You added 2 titles since last time — including one of our picks (Manchester by the Sea ✓). 3 fresh recommendations this round."
+      }
+    },
+    "runs": [
+      { "round": 1, "label": "Run 1 · May 30", "date": "2026-05-30", "count": 4, "isCurrent": false },
+      { "round": 2, "label": "Run 2 · Jun 14", "date": "2026-06-14", "count": 2, "isCurrent": true }
+    ]
+  },
+  "clusters": [
+    { "id": "cl-scifi", "label": "Cerebral sci-fi", "color": "#6ea8fe" },
+    { "id": "cl-drama", "label": "Quiet devastation", "color": "#e0668a" },
+    { "id": "cl-crime", "label": "Moral descent", "color": "#e8b94a" }
+  ],
+  "library": [
+    { "id": "lib-2001", "title": "2001: A Space Odyssey", "type": "movie", "year": "1968", "genres": ["Science Fiction"], "themes": ["the-sublime","evolution","ai"], "director": "Stanley Kubrick", "poster": "", "cluster": "cl-scifi" },
+    { "id": "lib-ghost", "title": "A Ghost Story", "type": "movie", "year": "2017", "genres": ["Drama","Fantasy"], "themes": ["time","grief","impermanence"], "director": "David Lowery", "poster": "", "cluster": "cl-drama" },
+    { "id": "lib-aftersun", "title": "Aftersun", "type": "movie", "year": "2022", "genres": ["Drama"], "themes": ["memory","fatherhood","grief"], "director": "Charlotte Wells", "poster": "", "cluster": "cl-drama" },
+    { "id": "lib-bb", "title": "Breaking Bad", "type": "show", "year": "2008", "genres": ["Crime","Drama"], "themes": ["moral-descent","power","family"], "poster": "", "cluster": "cl-crime" },
+    { "id": "lib-wire", "title": "The Wire", "type": "show", "year": "2002", "genres": ["Crime","Drama"], "themes": ["institutions","the-city","moral-descent"], "poster": "", "cluster": "cl-crime" },
+    { "id": "lib-bcs", "title": "Better Call Saul", "type": "show", "year": "2015", "genres": ["Crime","Drama"], "themes": ["moral-descent","identity"], "poster": "", "cluster": "cl-crime" }
+  ],
+  "recommendations": [
+    { "id": "rec-stalker", "title": "Stalker", "type": "movie", "year": "1979", "overview": "A guide leads two men through a forbidden Zone toward a room said to grant one's deepest desire.", "poster": "", "ratings": { "imdb": "8.1", "rt": "100%", "letterboxd": "4.3" }, "runtime": "162 min", "kind": "adventurous", "score": 0.93, "cluster": "cl-scifi", "round": 2, "proposedAt": "2026-06-14", "status": "active", "sources": [{ "name": "Letterboxd similar", "note": "appears on Annihilation & 2001 pages" }], "relatedTo": [{ "libraryId": "lib-2001", "libraryTitle": "2001: A Space Odyssey", "relationship": "the-sublime; slow philosophical sci-fi", "strength": 0.88, "why": "Like 2001, it treats the unknowable as something to sit inside, not solve — Tarkovsky stretches the same cosmic awe to a hypnotic crawl." }] },
+    { "id": "rec-solaris", "title": "Solaris", "type": "movie", "year": "1972", "overview": "A psychologist sent to a remote space station finds the planet below resurrecting his grief.", "poster": "", "ratings": { "imdb": "8.0", "rt": "95%", "letterboxd": "4.2" }, "runtime": "167 min", "kind": "adventurous", "score": 0.86, "cluster": "cl-scifi", "round": 1, "proposedAt": "2026-05-30", "status": "active", "sources": [{ "name": "TMDB similar", "note": "top similar to 2001" }], "relatedTo": [{ "libraryId": "lib-2001", "libraryTitle": "2001: A Space Odyssey", "relationship": "metaphysical hard sci-fi", "strength": 0.82, "why": "The other towering 'inner space' epic — where 2001 looks outward to evolution, Solaris turns the same scale onto memory and loss." }] },
+    { "id": "rec-tol", "title": "The Tree of Life", "type": "movie", "year": "2011", "overview": "A Texas childhood is set against the birth and breadth of the cosmos itself.", "poster": "", "ratings": { "imdb": "6.8", "rt": "85%", "letterboxd": "3.9" }, "runtime": "139 min", "kind": "safe", "score": 0.8, "cluster": "cl-drama", "round": 1, "proposedAt": "2026-05-30", "status": "active", "sources": [{ "name": "r/TrueFilm", "note": "recurring A Ghost Story comparison" }], "relatedTo": [{ "libraryId": "lib-ghost", "libraryTitle": "A Ghost Story", "relationship": "impermanence; cosmic scale of small lives", "strength": 0.79, "why": "For the same reason A Ghost Story wrecked you — both zoom from one aching home all the way out to deep time." }] },
+    { "id": "rec-manchester", "title": "Manchester by the Sea", "type": "movie", "year": "2016", "overview": "A withdrawn handyman returns home to care for his nephew and the grief he left behind.", "poster": "", "ratings": { "imdb": "7.8", "rt": "96%", "letterboxd": "4.0" }, "runtime": "137 min", "kind": "safe", "score": 0.84, "cluster": "cl-drama", "round": 1, "proposedAt": "2026-05-30", "status": "acquired", "sources": [{ "name": "editorial", "note": "grief-drama canon" }], "relatedTo": [{ "libraryId": "lib-aftersun", "libraryTitle": "Aftersun", "relationship": "restrained grief; what goes unsaid", "strength": 0.85, "why": "Same held-breath restraint as Aftersun — devastation carried in the things the characters can't bring themselves to say." }] },
+    { "id": "rec-sopranos", "title": "The Sopranos", "type": "show", "year": "1999", "overview": "A New Jersey mob boss starts therapy, and American prestige TV is never the same.", "poster": "", "ratings": { "imdb": "9.2", "rt": "92%", "letterboxd": "4.5" }, "kind": "safe", "score": 0.95, "cluster": "cl-crime", "round": 2, "proposedAt": "2026-06-14", "status": "active", "sources": [{ "name": "consensus", "note": "the origin of the antihero arc" }], "relatedTo": [{ "libraryId": "lib-bb", "libraryTitle": "Breaking Bad", "relationship": "the antihero blueprint Breaking Bad inherited", "strength": 0.9, "why": "The show Breaking Bad and Better Call Saul are in conversation with — the original 'good man rotting from the inside' on the small screen." }, { "libraryId": "lib-wire", "libraryTitle": "The Wire", "relationship": "novelistic crime TV", "strength": 0.7, "why": "Its closest peer in ambition — where The Wire maps the city, The Sopranos maps one cracking psyche." }] },
+    { "id": "rec-gomorrah", "title": "Gomorrah", "type": "show", "year": "2014", "overview": "The Camorra's foot soldiers and bosses, filmed with documentary coldness in Naples' projects.", "poster": "", "ratings": { "imdb": "8.6", "rt": "97%", "letterboxd": "4.1" }, "kind": "adventurous", "score": 0.83, "cluster": "cl-crime", "round": 1, "proposedAt": "2026-05-30", "status": "active", "sources": [{ "name": "Trakt related", "note": "related to The Wire" }], "relatedTo": [{ "libraryId": "lib-wire", "libraryTitle": "The Wire", "relationship": "systemic, unromantic crime", "strength": 0.8, "why": "The Wire's bleak institutional eye, transplanted to Naples — no heroes, just a machine that eats everyone who feeds it." }] }
+  ],
+  "map": {
+    "nodes": [
+      { "id": "lib-2001", "kind": "library", "x": 0.22, "y": 0.30, "cluster": "cl-scifi", "r": 10 },
+      { "id": "rec-stalker", "kind": "rec", "x": 0.29, "y": 0.26, "cluster": "cl-scifi", "r": 7 },
+      { "id": "rec-solaris", "kind": "rec", "x": 0.18, "y": 0.37, "cluster": "cl-scifi", "r": 6 },
+      { "id": "lib-ghost", "kind": "library", "x": 0.74, "y": 0.27, "cluster": "cl-drama", "r": 9 },
+      { "id": "lib-aftersun", "kind": "library", "x": 0.82, "y": 0.34, "cluster": "cl-drama", "r": 8 },
+      { "id": "rec-tol", "kind": "rec", "x": 0.69, "y": 0.34, "cluster": "cl-drama", "r": 6 },
+      { "id": "rec-manchester", "kind": "rec", "x": 0.86, "y": 0.27, "cluster": "cl-drama", "r": 6 },
+      { "id": "lib-bb", "kind": "library", "x": 0.45, "y": 0.73, "cluster": "cl-crime", "r": 9 },
+      { "id": "lib-wire", "kind": "library", "x": 0.55, "y": 0.78, "cluster": "cl-crime", "r": 9 },
+      { "id": "lib-bcs", "kind": "library", "x": 0.43, "y": 0.81, "cluster": "cl-crime", "r": 7 },
+      { "id": "rec-sopranos", "kind": "rec", "x": 0.57, "y": 0.70, "cluster": "cl-crime", "r": 8 },
+      { "id": "rec-gomorrah", "kind": "rec", "x": 0.62, "y": 0.81, "cluster": "cl-crime", "r": 6 }
+    ],
+    "edges": [
+      { "source": "rec-stalker", "target": "lib-2001", "relationship": "the-sublime", "weight": 0.88 },
+      { "source": "rec-solaris", "target": "lib-2001", "relationship": "inner-space epic", "weight": 0.82 },
+      { "source": "rec-tol", "target": "lib-ghost", "relationship": "impermanence", "weight": 0.79 },
+      { "source": "rec-manchester", "target": "lib-aftersun", "relationship": "restrained grief", "weight": 0.85 },
+      { "source": "rec-sopranos", "target": "lib-bb", "relationship": "antihero blueprint", "weight": 0.9 },
+      { "source": "rec-sopranos", "target": "lib-wire", "relationship": "novelistic crime", "weight": 0.7 },
+      { "source": "rec-gomorrah", "target": "lib-wire", "relationship": "systemic crime", "weight": 0.8 }
+    ]
+  }
+}

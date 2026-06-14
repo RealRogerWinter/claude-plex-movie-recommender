@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Recommendation Atlas — for your Plex library</title>
+  <meta name="description" content="Bespoke film &amp; TV recommendations for your Plex library — every pick tied to something you already own, and mapped as an interactive constellation." />
+  <link rel="icon" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="logo.svg" />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Recommendation Atlas" />
+  <meta property="og:title" content="The Recommendation Atlas — for your Plex library" />
+  <meta property="og:description" content="Bespoke film &amp; TV recommendations for your Plex library — every pick tied to something you already own, and mapped as an interactive constellation." />
+  <meta property="og:image" content="__SITE_URL__/__OG_IMAGE__" />
+  <meta property="og:image:alt" content="The Recommendation Atlas" />
+  <meta property="og:url" content="__SITE_URL__/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Recommendation Atlas — for your Plex library" />
+  <meta name="twitter:description" content="Bespoke film &amp; TV recommendations for your Plex library, mapped as an interactive constellation." />
+  <meta name="twitter:image" content="__SITE_URL__/__OG_IMAGE__" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <main class="wrap">
+    <!-- HERO ---------------------------------------------------------------->
+    <header class="hero">
+      <div class="brand">
+        <img class="brand-logo" src="logo.svg" alt="" width="46" height="46" />
+        <div class="kicker" id="kicker">The Recommendation Atlas</div>
+      </div>
+      <div class="stats" id="stats"></div>
+    </header>
+
+    <!-- SINCE LAST RUN (feedback loop) -------------------------------------->
+    <section class="since" id="since" hidden>
+      <h3>Latest from the recommendation engine</h3>
+      <div class="headline" id="since-headline"></div>
+      <div class="chips" id="since-chips"></div>
+    </section>
+
+    <!-- CONSTELLATION MAP --------------------------------------------------->
+    <section class="section" id="map-section">
+      <div class="section-head">
+        <h2>The Atlas <span class="map-scope" id="map-scope"></span></h2>
+        <div class="meta"><a href="map.html">open full screen &nearr;</a></div>
+      </div>
+      <div class="map-shell">
+        <svg id="map" role="img" aria-label="A map of your library and its recommendations, grouped by taste."></svg>
+        <div class="map-hint"><span class="hint-pointer">drag &middot; scroll to zoom &middot; click a glowing pick</span><span class="hint-touch">drag &middot; pinch to zoom &middot; tap a glowing pick</span></div>
+      </div>
+      <div class="map-legend" id="legend"></div>
+    </section>
+
+    <!-- RECOMMENDATIONS ----------------------------------------------------->
+    <section class="section" id="recs">
+      <div class="section-head">
+        <h2>Recommendations</h2>
+        <div class="meta" id="recs-meta"></div>
+      </div>
+      <div class="rec-tabs" id="rec-tabs" hidden></div>
+      <div id="clusters"></div>
+    </section>
+
+    <footer>
+      <div id="footer-note"></div>
+      <div class="mono" id="footer-meta"></div>
+    </footer>
+  </main>
+
+  <div class="node-tip" id="tip" aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="map.js"></script>
+  <script src="render.js"></script>
+</body>
+</html>

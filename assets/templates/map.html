@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Atlas — full screen</title>
+  <link rel="icon" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
+  <style>
+    body { overflow: hidden; }
+    .map-shell { border: 0; border-radius: 0; box-shadow: none; height: 100vh; height: 100dvh; }
+    .back { position: fixed; top: 18px; right: 20px; z-index: 70; font-family: var(--mono);
+      font-size: 12px; letter-spacing: .1em; text-transform: uppercase; background: rgba(8,9,13,.7);
+      border: 1px solid var(--line); padding: 9px 14px; border-radius: 10px; backdrop-filter: blur(8px); }
+    .title-tag { position: fixed; top: 18px; left: 22px; z-index: 70; font-family: var(--display);
+      font-size: 22px; color: var(--paper); opacity: .9; }
+    /* Mobile / coarse pointer: the legend becomes a thin, horizontally-scrollable strip pinned to the
+       bottom instead of a blocky corner panel that eats the screen. */
+    @media (pointer: coarse), (max-width: 720px) {
+      .map-shell > .map-legend {
+        top: auto; bottom: 0; left: 0; right: 0; max-width: none; z-index: 60;
+        flex-direction: row; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
+        gap: 14px; padding: 7px 12px; border: 0; border-top: 1px solid var(--line);
+        border-radius: 0; background: rgba(8,9,13,.92); backdrop-filter: blur(8px); touch-action: pan-x; }
+      .map-shell > .map-legend .lg-row { font-size: 11px; white-space: nowrap; flex: none; }
+      .map-hint { display: none; }          /* gesture is obvious full-screen; reclaim the space */
+      .title-tag { font-size: 17px; }
+      .back { top: 12px; right: 12px; padding: 7px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="title-tag">The Atlas</div>
+  <a class="back" href="index.html">&larr; back to list</a>
+  <div class="map-shell">
+    <svg id="map-full" role="img" aria-label="Full-screen map of the library and its recommendations."></svg>
+    <div class="map-legend" id="legend"></div>
+    <div class="map-hint">drag &middot; scroll to zoom &middot; hover a node</div>
+  </div>
+  <div class="node-tip" id="tip" aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="map.js"></script>
+  <script>
+    fetch("data.json").then(r => r.json()).then(data => {
+      RecMap.init("#map-full", data, { legend: "#legend", tip: "#tip", fullscreen: true,
+        // full-screen map has no cards of its own — "View card" deep-links to the card on the main page
+        onNodeClick: function (d) { location.href = "index.html?card=" + encodeURIComponent(d.id); } });
+    }).catch(e => {
+      document.querySelector(".title-tag").textContent = "Could not load data.json — serve over http (see serve.py).";
+      console.error(e);
+    });
+  </script>
+</body>
+</html>
