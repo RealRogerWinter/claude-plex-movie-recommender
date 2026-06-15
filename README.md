@@ -1,25 +1,26 @@
 # Claude Code Movie Recommender
 
-A [Claude Code](https://claude.com/claude-code) skill **for Plex servers** that turns your library into a
-living **recommendation atlas**: it scans what you own on Plex, researches the web for titles you'd love but
-don't have, ties every pick back to something on your shelf (with a one-line *why*), and publishes a rich
-HTML page plus an **interactive proximity map** where closeness encodes taste.
+A [Claude Code](https://claude.com/claude-code) skill **for Plex servers** that turns a Plex library into a
+living **recommendation atlas**: it scans the library, researches the web for titles the owner doesn't own
+but will love, ties every pick back to something already on the shelf (with a one-line *why*), and publishes
+a rich HTML page plus an **interactive proximity map** where closeness encodes taste.
 
-It's **stateful** — each run diffs your library against the last, learns from what you actually added
-(previous picks you acquired are a strong "more like this" signal), evolves your taste profile, and
-**appends** a new round of recommendations instead of overwriting the old ones.
+It's **stateful**: each run diffs the library against the last, learns from what was actually added (a
+previously-recommended title that reappears is a strong "more like this" signal), evolves the taste profile,
+and **appends** a new round of picks instead of overwriting the old ones.
 
-> **Built for Plex.** It reads your Plex library over the Plex API (with optional Tautulli for per-user tabs
-> and Overseerr/Jellyseerr for availability + requests). The library backend is pluggable (`library.source`),
-> but Plex is the implemented and supported one. Everything installation-specific lives in one config file,
-> so the repo stays generic and shareable.
+> **Built for Plex.** It reads the Plex library over the Plex API (Tautulli adds per-user tabs;
+> Overseerr/Jellyseerr add availability + requests — both optional). The library backend is pluggable
+> (`library.source`), but Plex is the one that's implemented and supported. Everything installation-specific
+> lives in one config file, so the repo stays generic and shareable.
 
 ![The Recommendation Atlas — a full-screen constellation where every recommendation and the library titles it relates to are nodes; proximity encodes taste, edges are the "because you have X" links](docs/screenshot-atlas.png)
 
 ## What it produces
 - **`index.html`** — recommendation cards grouped into taste regions (swipeable carousels). Each card: poster,
   title/year, full overview, IMDb + Rotten Tomatoes links, *because you have …* links with a one-line why, a
-  freshness badge (which run produced it), and — with Seerr — a live availability badge + one-click request.
+  freshness badge (which run produced it), and, when Seerr is configured, a live availability badge +
+  one-click request.
 - **`map.html`** — a full-screen constellation: every pick and its library anchors as nodes; proximity =
   similarity; edges = the "because you have X" links.
 - **Per-user tabs** (optional, via Tautulli) — a personalized tab per Plex user, driven by their watch
@@ -42,13 +43,13 @@ fans the research out in parallel.
 - **Python 3** — standard library only, no pip packages to install.
 - **A Plex server** to read — the one hard dependency.
 - **[Claude Code](https://claude.com/claude-code)** to run the skill; the Workflow tool drives the parallel
-  research (without it, you can run the `prompts/` by hand).
+  research (without it, run the `prompts/` by hand).
 - Optional: a **TMDB API key** (richer posters/metadata), **Tautulli** (per-user tabs),
   **Overseerr/Jellyseerr** (live availability + one-click requests), and an SVG rasterizer
   (`rsvg-convert` / Inkscape / ImageMagick) to emit a PNG social-card image. D3 loads from a CDN.
 
 ## Install
-Drop this directory in your Claude Code skills folder so it's discoverable as `/recommendations`:
+Drop this directory in the Claude Code skills folder so it's discoverable as `/recommendations`:
 ```bash
 git clone https://github.com/RealRogerWinter/claude-plex-movie-recommender ~/.claude/skills/recommendations
 ```
@@ -61,10 +62,10 @@ cp ~/.claude/skills/recommendations/config.example.json ~/.config/recommendation
 python3 ~/.claude/skills/recommendations/scripts/config.py show   # inspect the merged config
 ```
 Every field is documented in **[`references/configuration.md`](references/configuration.md)** (resolution
-order, env overrides, and how tokens/keys are read at runtime — they're never stored).
+order, env overrides, and how tokens/keys are read at runtime; they're never stored).
 
 ## Integrations (all optional except Plex)
-The skill needs one thing: a library to read. Everything else degrades gracefully — see
+The skill needs one thing: a library to read. Everything else degrades gracefully; see
 **[`references/integrations.md`](references/integrations.md)**.
 
 | Integration | Adds | If absent |
@@ -86,32 +87,32 @@ python3 scripts/build_site.py   --workdir $WD --append $WD/work/recommendations.
 python3 scripts/serve.py        --dir $WD/site    # preview at http://localhost:8000
 ```
 
-> **Just want to see the UI?** No Plex needed — run `python3 scripts/serve.py --dir assets/templates`, then
-> open `http://localhost:8000/index.html?data=data.sample.json` to render the bundled sample data.
+> **UI preview (no Plex needed):** run `python3 scripts/serve.py --dir assets/templates`, then open
+> `http://localhost:8000/index.html?data=data.sample.json` to render the bundled sample data.
 
 ### Daring & Discovery modes
 Two optional flags reshape a run (set `modes.*` in config, or pass `daring: true` / `discovery: true` in the
 pipeline args):
 - **daring** — pushes past the safe zone: deeper cuts, festival/international, older and formally bold picks.
-- **discovery** — first *synthesizes a brand-new taste cluster* from your library's genre trends (a novel
+- **discovery** — first *synthesizes a brand-new taste cluster* from the library's genre trends (a novel
   intersection it doesn't already have), then researches it.
 
 Tag the build with `--mode daring` / `--mode discovery` so the round is labelled and cards are badged. After a
 bold run, **`scripts/analyze_runs.py`** tables every target × mode (availability, era, *anchor novelty*, thin
-picks) so you can see whether it actually explored new ground — the measurement half of the feedback loop.
+picks), so it's clear whether the run explored new ground: the measurement half of the feedback loop.
 
 ## The feedback loop
-`scan` records everything found; `track_state` diffs it against last time. Titles you **added** become taste
-signal; any that match a prior recommendation are marked **acquired** (a strong "more of this"). Prompt
-`07-evolve-preferences` folds the diff into your profile so each round explores **new** ground, and the site's
-"Since last time" panel surfaces the system learning. Recommendations **accumulate** across rounds — a run
-filter and freshness badges let you see which round produced each pick.
+`scan` records everything found; `track_state` diffs it against last time. Titles the owner **added** become
+taste signal; any that match a prior recommendation are marked **acquired** (a strong "more of this"). Prompt
+`07-evolve-preferences` folds the diff into the profile so each round explores **new** ground, and the site's
+"Since last time" panel shows what changed. Recommendations **accumulate** across rounds; a run filter and
+freshness badges show which round produced each pick.
 
 ## Publish
 The build is a self-contained static site. See **[`references/deploy.md`](references/deploy.md)** for GitHub
-Pages, Cloudflare (Pages / Tunnel with a Basic-Auth gate), or any static host — including how to wire the
-Seerr request proxy. Publishing is public; treat the first publish — and any DNS change — as a deliberate,
-confirm-first step. Keep your generated `site/` (personal data) out of any repo you intend to open-source; the
+Pages, Cloudflare (Pages / Tunnel with a Basic-Auth gate), or any static host, including how to wire the
+Seerr request proxy. Publishing is public; treat the first publish (and any DNS change) as a deliberate,
+confirm-first step. Keep the generated `site/` (personal data) out of any repo intended for open-source; the
 **skill source is the generic, shareable part**.
 
 ## Project layout
